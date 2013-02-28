@@ -1,11 +1,6 @@
-(function(testacular, requirejs, require) {
+(function(testacular, requirejs) {
 
 %CONTENT%
-
-// config base path
-require.config({
-  baseUrl: '/base'
-});
 
 // make it async
 testacular.loaded = function() {};
@@ -13,4 +8,4 @@ testacular.loaded = function() {};
 // patch require.js
 requirejs.load = createPatchedLoad(testacular.files, requirejs.load);
 
-})(window.__testacular__, window.requirejs, window.require);
+})(window.__testacular__, window.requirejs);
