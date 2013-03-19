@@ -1,11 +1,11 @@
-(function(testacular, requirejs) {
+(function(karma, requirejs) {
 
 %CONTENT%
 
 // make it async
-testacular.loaded = function() {};
+karma.loaded = function() {};
 
 // patch require.js
-requirejs.load = createPatchedLoad(testacular.files, requirejs.load);
+requirejs.load = createPatchedLoad(karma.files, requirejs.load);
 
-})(window.__testacular__, window.requirejs);
+})(window.__karma__, window.requirejs);
