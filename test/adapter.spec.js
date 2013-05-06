@@ -26,6 +26,13 @@ describe('adapter requirejs', function() {
     expect(originalLoadSpy.argsForCall[0][2]).toBe('/base/other/file.js');
   });
 
+  it('should append timestamp if not found and not in /base/ path', function() {
+    load('context', 'module', '/custom/proxy/path/other/file.js');
+
+    expect(originalLoadSpy).toHaveBeenCalled();
+    expect(originalLoadSpy.argsForCall[0][2]).toMatch(/^\/custom\/proxy\/path\/other\/file.js\?(\d+)$/);
+  });
+
 
   describe('normalizePath', function() {
 

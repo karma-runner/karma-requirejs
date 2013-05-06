@@ -28,6 +28,9 @@ var createPatchedLoad = function(files, originalLoadFn) {
 
     if (files.hasOwnProperty(url)) {
       url = url + '?' + files[url];
+    } else if (url.indexOf('/base/') !== 0) {
+      console.warn('There is no timestamp for ' + url + '!');
+      url = url + '?' + Date.now();
     } else {
       console.error('There is no timestamp for ' + url + '!');
     }
