@@ -19,7 +19,7 @@ describe('adapter requirejs', function() {
   });
 
 
-  it('should not append timestamp if not found', function() {
+  it('should not append timestamp if not found in /base/ path', function() {
     load('context', 'module', '/base/other/file.js');
 
     expect(originalLoadSpy).toHaveBeenCalled();
