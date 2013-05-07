@@ -19,11 +19,18 @@ describe('adapter requirejs', function() {
   });
 
 
-  it('should not append timestamp if not found', function() {
+  it('should not append timestamp if not found in /base/ path', function() {
     load('context', 'module', '/base/other/file.js');
 
     expect(originalLoadSpy).toHaveBeenCalled();
     expect(originalLoadSpy.argsForCall[0][2]).toBe('/base/other/file.js');
+  });
+
+  it('should append timestamp if not found and not in /base/ path', function() {
+    load('context', 'module', '/custom/proxy/path/other/file.js');
+
+    expect(originalLoadSpy).toHaveBeenCalled();
+    expect(originalLoadSpy.argsForCall[0][2]).toMatch(/^\/custom\/proxy\/path\/other\/file.js\?(\d+)$/);
   });
 
 
