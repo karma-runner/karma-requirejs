@@ -12,7 +12,7 @@
   },
   "keywords": [
     "karma-plugin",
-    "adapter",
+    "karma-adapter",
     "requirejs"
   ],
   "author": "Vojta Jina <vojta.jina@gmail.com>",
