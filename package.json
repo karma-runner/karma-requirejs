@@ -17,7 +17,7 @@
   ],
   "author": "Vojta Jina <vojta.jina@gmail.com>",
   "dependencies": {
-      "requirejs": "2.1.*"
+      "requirejs": "~2.1"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
