@@ -5,7 +5,7 @@
 var normalizePath = function(path) {
   var normalized = [];
   var parts = path.split('/');
-
+  
   for (var i = 0; i < parts.length; i++) {
     if (parts[i] === '.') {
       continue;
@@ -19,7 +19,12 @@ var normalizePath = function(path) {
     normalized.push(parts[i]);
   }
 
-  return normalized.join('/');
+  var url = normalized.join('/');
+  if (url.charAt(0) !== '/') {
+    url = '/' + url;
+  }
+
+  return url;
 };
 
 var createPatchedLoad = function(files, originalLoadFn) {
