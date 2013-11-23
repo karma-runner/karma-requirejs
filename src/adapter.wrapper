@@ -7,5 +7,7 @@ karma.loaded = function() {};
 
 // patch require.js
 requirejs.load = createPatchedLoad(karma.files, requirejs.load);
+// removed from RegExp "^\/|"
+requirejs.jsExtRegExp = /:|\?|\.js$/;
 
 })(window.__karma__, window.requirejs);
