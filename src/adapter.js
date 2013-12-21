@@ -22,12 +22,16 @@ var normalizePath = function(path) {
   return normalized.join('/');
 };
 
-var createPatchedLoad = function(files, originalLoadFn) {
-  return function (context, moduleName, url) {
+var createPatchedLoad = function(files, originalLoadFn, locationPathname) {
+  var IS_DEBUG = /debug\.html$/.test(locationPathname);
+
+  return function(context, moduleName, url) {
     url = normalizePath(url);
 
     if (files.hasOwnProperty(url)) {
-      url = url + '?' + files[url];
+      if (!IS_DEBUG) {
+        url = url + '?' + files[url];
+      }
     } else {
       console.error('There is no timestamp for ' + url + '!');
     }

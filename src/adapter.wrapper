@@ -1,4 +1,4 @@
-(function(karma, requirejs) {
+(function(karma, requirejs, locationPathname) {
 
 %CONTENT%
 
@@ -6,6 +6,6 @@
 karma.loaded = function() {};
 
 // patch require.js
-requirejs.load = createPatchedLoad(karma.files, requirejs.load);
+requirejs.load = createPatchedLoad(karma.files, requirejs.load, locationPathname);
 
-})(window.__karma__, window.requirejs);
+})(window.__karma__, window.requirejs, window.location.pathname);

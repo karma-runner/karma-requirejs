@@ -1,13 +1,12 @@
 describe('adapter requirejs', function() {
   var load, originalLoadSpy;
+  var files = {
+    '/base/some/file.js': '12345'
+  };
 
   beforeEach(function() {
-    var files = {
-      '/base/some/file.js': '12345'
-    };
-
     originalLoadSpy = jasmine.createSpy('requirejs.load');
-    load = createPatchedLoad(files, originalLoadSpy);
+    load = createPatchedLoad(files, originalLoadSpy, '/');
   });
 
 
@@ -24,6 +23,15 @@ describe('adapter requirejs', function() {
 
     expect(originalLoadSpy).toHaveBeenCalled();
     expect(originalLoadSpy.argsForCall[0][2]).toBe('/base/other/file.js');
+  });
+
+
+  it('should not append timestamp when running in debug mode', function() {
+    load = createPatchedLoad(files, originalLoadSpy, '/debug.html');
+    load(null, null, '/base/some/file.js');
+
+    expect(originalLoadSpy).toHaveBeenCalled();
+    expect(originalLoadSpy.argsForCall[0][2]).toBe('/base/some/file.js');
   });
 
 
