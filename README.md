@@ -2,8 +2,6 @@
 
 > Adapter for the [RequireJS](http://requirejs.org/) framework.
 
-**This plugin ships with Karma by default, so you don't need to install it.**
-
 Check out examples on how to configure RequireJS with Karma:
 - Karma's e2e test https://github.com/karma-runner/karma/tree/master/test/e2e/requirejs
 - Karma's docs http://karma-runner.github.io/0.8/plus/RequireJS.html
