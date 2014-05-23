@@ -33,7 +33,9 @@ var createPatchedLoad = function(files, originalLoadFn, locationPathname) {
         url = url + '?' + files[url];
       }
     } else {
-      console.error('There is no timestamp for ' + url + '!');
+      if (!/https?:\/\/\S+\.\S+/i.test(url)) {
+        console.error('There is no timestamp for ' + url + '!');
+      }
     }
 
     return originalLoadFn.call(this, context, moduleName, url);
