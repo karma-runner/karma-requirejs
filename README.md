@@ -1,4 +1,4 @@
-# karma-requirejs  [![Build Status](https://travis-ci.org/karma-runner/karma-requirejs.png?branch=master)](https://travis-ci.org/karma-runner/karma-requirejs)
+# karma-requirejs  [![Build Status](https://travis-ci.org/karma-runner/karma-requirejs.svg?branch=master)](https://travis-ci.org/karma-runner/karma-requirejs)
 
 > Adapter for the [RequireJS](http://requirejs.org/) framework.
 
