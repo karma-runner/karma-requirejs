@@ -3,6 +3,11 @@ describe('adapter requirejs', function() {
   var files = {
     '/base/some/file.js': '12345'
   };
+  var context = {
+    config: {
+      baseUrl: '/base/'
+    }
+  };
 
   beforeEach(function() {
     spyOn(console, 'error');
@@ -48,6 +53,13 @@ describe('adapter requirejs', function() {
     expect(console.error.mostRecentCall.args[0]).toMatch(/^There is no timestamp for /);
   });
 
+  it('should prepend requirejs baseUrl if path is relative and baseUrl is known', function() {
+    load(context, 'module', 'some/file.js');
+
+    expect(originalLoadSpy).toHaveBeenCalled();
+    expect(originalLoadSpy.argsForCall[0][2]).toBe('/base/some/file.js?12345');
+  });
+
 
   describe('normalizePath', function() {
 
@@ -58,6 +70,10 @@ describe('adapter requirejs', function() {
 
     it('should preserve .. in the beginning of the path', function() {
       expect(normalizePath('../../a/file.js')).toBe('../../a/file.js');
+    });
+
+    it('should prepend requirejs baseUrl if path is relative and baseUrl is known', function() {
+      expect(normalizePath('a/../b/./../x.js', context)).toBe('/base/x.js');
     });
   });
 });
