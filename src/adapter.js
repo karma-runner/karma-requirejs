@@ -2,8 +2,13 @@
 // to take advantage of karma's heavy caching
 // it would work even without this hack, but with reloading all the files all the time
 
-var normalizePath = function(path) {
+var normalizePath = function(path, context) {
   var normalized = [];
+
+  if (context && context.config && context.config.baseUrl && !/^https?:\/\/|^\//i.test(path)) {
+      path = context.config.baseUrl + path;
+  }
+
   var parts = path.split('/');
 
   for (var i = 0; i < parts.length; i++) {
@@ -26,7 +31,7 @@ var createPatchedLoad = function(files, originalLoadFn, locationPathname) {
   var IS_DEBUG = /debug\.html$/.test(locationPathname);
 
   return function(context, moduleName, url) {
-    url = normalizePath(url);
+    url = normalizePath(url, context);
 
     if (files.hasOwnProperty(url)) {
       if (!IS_DEBUG) {
