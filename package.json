@@ -16,7 +16,11 @@
     "requirejs"
   ],
   "author": "Vojta Jina <vojta.jina@gmail.com>",
-  "dependencies": {},
+  "dependencies": {
+    "eslint": "^0.24.1",
+    "eslint-config-standard": "^3.4.1",
+    "grunt-eslint": "^16.0.0"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.6",

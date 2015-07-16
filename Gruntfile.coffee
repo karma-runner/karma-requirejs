@@ -8,34 +8,14 @@ module.exports = (grunt) ->
     build:
       adapter: '<%= files.adapter %>'
 
-    # JSHint options
-    # http://www.jshint.com/options/
-    jshint:
-      adapter:
-        files:
-          src: '<%= files.adapter %>'
-        options:
-          browser: true,
-          strict: false
-          undef: false
-          camelcase: false
-
-      options:
-        quotmark: 'single'
-        camelcase: true
-        strict: true
-        trailing: true
-        curly: true
-        eqeqeq: true
-        immed: true
-        latedef: true
-        newcap: true
-        noarg: true
-        sub: true
-        undef: true
-        boss: true
-        globals: {}
-
+    eslint:
+      target: [
+        'lib/index.js',
+        'src/*.js',
+        'karma.conf.js',
+        'tasks/*.js',
+        'test/*.js'
+      ]
     karma:
       adapter:
         configFile: 'karma-v0.8.conf.js'
@@ -58,13 +38,13 @@ module.exports = (grunt) ->
 
 
   grunt.loadTasks 'tasks'
-  grunt.loadNpmTasks 'grunt-contrib-jshint'
   grunt.loadNpmTasks 'grunt-karma'
   grunt.loadNpmTasks 'grunt-bump'
   grunt.loadNpmTasks 'grunt-npm'
   grunt.loadNpmTasks 'grunt-auto-release'
+  grunt.loadNpmTasks 'grunt-eslint'
 
-  grunt.registerTask 'default', ['build', 'jshint', 'test']
+  grunt.registerTask 'default', ['build', 'eslint', 'test']
   grunt.registerTask 'test', ['karma']
 
   grunt.registerTask 'release', 'Build, bump and publish to NPM.', (type) ->
