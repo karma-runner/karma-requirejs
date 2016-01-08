@@ -4,7 +4,9 @@
 
 var normalizePath = function(path) {
   var normalized = [];
-  var parts = path.split('/');
+  var parts = path
+    .split('?')[0] // cut off GET params, used by noext requirejs plugin
+    .split('/');
 
   for (var i = 0; i < parts.length; i++) {
     if (parts[i] === '.') {
