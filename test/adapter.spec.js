@@ -16,14 +16,14 @@ describe('adapter requirejs', function () {
     load('context', 'module', '/base/some/file.js')
 
     expect(originalLoadSpy).toHaveBeenCalled()
-    expect(originalLoadSpy.argsForCall[0][2]).toBe('/base/some/file.js?12345')
+    expect(originalLoadSpy.calls.mostRecent().args[2]).toBe('/base/some/file.js?12345')
   })
 
   it('should not append timestamp if not found', function () {
     load('context', 'module', '/base/other/file.js')
 
     expect(originalLoadSpy).toHaveBeenCalled()
-    expect(originalLoadSpy.argsForCall[0][2]).toBe('/base/other/file.js')
+    expect(originalLoadSpy.calls.mostRecent().args[2]).toBe('/base/other/file.js')
   })
 
   it('should not append timestamp when running in debug mode', function () {
@@ -31,7 +31,7 @@ describe('adapter requirejs', function () {
     load(null, null, '/base/some/file.js')
 
     expect(originalLoadSpy).toHaveBeenCalled()
-    expect(originalLoadSpy.argsForCall[0][2]).toBe('/base/some/file.js')
+    expect(originalLoadSpy.calls.mostRecent().args[2]).toBe('/base/some/file.js')
   })
 
   it('should ignore absolute paths with domains', function () {
@@ -44,7 +44,7 @@ describe('adapter requirejs', function () {
     load('context', 'module', '/base/other/file.js')
 
     expect(console.error).toHaveBeenCalled()
-    expect(console.error.mostRecentCall.args[0]).toMatch(/^There is no timestamp for /)
+    expect(console.error.calls.mostRecent().args[0]).toMatch(/^There is no timestamp for /)
   })
 
   describe('normalizePath', function () {
@@ -56,7 +56,7 @@ describe('adapter requirejs', function () {
       load('context', 'module', '/base/other/file.js')
 
       expect(console.error).toHaveBeenCalled()
-      expect(console.error.mostRecentCall.args[0]).toMatch(/^There is no timestamp for /)
+      expect(console.error.calls.mostRecent().args[0]).toMatch(/^There is no timestamp for /)
     })
 
     describe('normalizePath', function () {
