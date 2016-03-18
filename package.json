@@ -1,6 +1,6 @@
 {
   "name": "karma-requirejs",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "A Karma plugin. Adapter for RequireJS framework.",
   "main": "lib/index.js",
   "scripts": {
