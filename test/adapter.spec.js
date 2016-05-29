@@ -38,6 +38,14 @@ describe('adapter requirejs', function () {
     expect(originalLoadSpy.calls.mostRecent().args[2]).toBe('/base/some/file.js')
   })
 
+  it('should ignore when config.requireJsShowNoTimestampsError is a RegExp string and does not match', function () {
+    karma.config.requireJsShowNoTimestampsError = '^(?!.*/base/other/file\\.js)'
+    load = createPatchedLoad(karma, originalLoadSpy, '/')
+    load('context', 'module', '/base/other/file.js')
+
+    expect(console.error).not.toHaveBeenCalled()
+  })
+
   it('should ignore when config.requireJsShowNoTimestampsError exists and is falsy', function () {
     karma.config.requireJsShowNoTimestampsError = false
     load = createPatchedLoad(karma, originalLoadSpy, '/')

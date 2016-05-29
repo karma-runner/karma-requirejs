@@ -40,7 +40,9 @@ var createPatchedLoad = function (karma, originalLoadFn, locationPathname) {
       }
     } else {
       var shouldShowNoTimestampError =
-          config.hasOwnProperty('requireJsShowNoTimestampsError')
+          typeof config.requireJsShowNoTimestampsError === 'string'
+          ? new RegExp(config.requireJsShowNoTimestampsError).test(url)
+          : config.hasOwnProperty('requireJsShowNoTimestampsError')
           ? config.requireJsShowNoTimestampsError
           : true
       if (shouldShowNoTimestampError && !/https?:\/\/\S+\.\S+/i.test(url)) {
