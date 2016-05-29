@@ -2,14 +2,18 @@
 describe('adapter requirejs', function () {
   var load
   var originalLoadSpy
-  var files = {
-    '/base/some/file.js': '12345'
-  }
+  var karma
 
   beforeEach(function () {
     spyOn(console, 'error')
+    karma = {
+      files: {
+        '/base/some/file.js': '12345'
+      },
+      config: {}
+    }
     originalLoadSpy = jasmine.createSpy('requirejs.load')
-    load = createPatchedLoad(files, originalLoadSpy, '/')
+    load = createPatchedLoad(karma, originalLoadSpy, '/')
   })
 
   it('should add timestamp', function () {
@@ -27,11 +31,19 @@ describe('adapter requirejs', function () {
   })
 
   it('should not append timestamp when running in debug mode', function () {
-    load = createPatchedLoad(files, originalLoadSpy, '/debug.html')
+    load = createPatchedLoad(karma, originalLoadSpy, '/debug.html')
     load(null, null, '/base/some/file.js')
 
     expect(originalLoadSpy).toHaveBeenCalled()
     expect(originalLoadSpy.calls.mostRecent().args[2]).toBe('/base/some/file.js')
+  })
+
+  it('should ignore when config.requireJsShowNoTimestampsError exists and is falsy', function () {
+    karma.config.requireJsShowNoTimestampsError = false
+    load = createPatchedLoad(karma, originalLoadSpy, '/')
+    load('context', 'module', '/base/other/file.js')
+
+    expect(console.error).not.toHaveBeenCalled()
   })
 
   it('should ignore absolute paths with domains', function () {

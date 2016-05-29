@@ -6,6 +6,6 @@
 karma.loaded = function() {};
 
 // patch require.js
-requirejs.load = createPatchedLoad(karma.files, requirejs.load, locationPathname);
+requirejs.load = createPatchedLoad(karma, requirejs.load, locationPathname);
 
 })(window.__karma__, window.requirejs, window.location.pathname);

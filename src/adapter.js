@@ -26,7 +26,9 @@ var normalizePath = function (path) {
   return normalized.join('/')
 }
 
-var createPatchedLoad = function (files, originalLoadFn, locationPathname) {
+var createPatchedLoad = function (karma, originalLoadFn, locationPathname) {
+  var files = karma.files
+  var config = karma.config
   var IS_DEBUG = /debug\.html$/.test(locationPathname)
 
   return function (context, moduleName, url) {
@@ -37,7 +39,11 @@ var createPatchedLoad = function (files, originalLoadFn, locationPathname) {
         url = url + '?' + files[url]
       }
     } else {
-      if (!/https?:\/\/\S+\.\S+/i.test(url)) {
+      var shouldShowNoTimestampError =
+          config.hasOwnProperty('requireJsShowNoTimestampsError')
+          ? config.requireJsShowNoTimestampsError
+          : true
+      if (shouldShowNoTimestampError && !/https?:\/\/\S+\.\S+/i.test(url)) {
         console.error('There is no timestamp for ' + url + '!')
       }
     }
