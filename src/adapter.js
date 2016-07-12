@@ -23,6 +23,10 @@ var normalizePath = function (path) {
     normalized.push(parts[i])
   }
 
+  var file = normalized.pop()
+  file += file.indexOf('.js') === -1 ? '.js' : ''
+  normalized.push(file)
+
   return normalized.join('/')
 }
 
