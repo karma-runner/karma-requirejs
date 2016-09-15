@@ -9,8 +9,7 @@
 
 Check out examples on how to configure RequireJS with Karma:
 - Karma's integration tests https://github.com/karma-runner/integration-tests/tree/master/requirejs
-- Karma's docs http://karma-runner.github.io/0.13/plus/requirejs.html
-- Kim's example project https://github.com/kjbekkelund/karma-requirejs
+- Karma's docs http://karma-runner.github.io/latest/plus/requirejs.html
 
 
 ----
