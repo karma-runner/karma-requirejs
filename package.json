@@ -16,6 +16,9 @@
     "requirejs"
   ],
   "author": "Vojta Jina <vojta.jina@gmail.com>",
+  "dependencies": {
+    "requirejs": "^2.2.0"
+  },
   "devDependencies": {
     "eslint": "^2.4.0",
     "eslint-config-standard": "^5.1.0",
@@ -32,12 +35,10 @@
     "karma": "1.x || ^0.13.22",
     "karma-chrome-launcher": "1.x || ^0.2.2",
     "karma-firefox-launcher": "1.x || ^0.1.7",
-    "karma-jasmine": "1.x || ^0.3.8",
-    "requirejs": "^2.2.0"
+    "karma-jasmine": "1.x || ^0.3.8"
   },
   "peerDependencies": {
-    "karma": ">=0.9",
-    "requirejs": "^2.1.0"
+    "karma": ">=0.9"
   },
   "license": "MIT",
   "contributors": [
