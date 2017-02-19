@@ -33,7 +33,7 @@
     "karma-chrome-launcher": "1.x || ^0.2.2",
     "karma-firefox-launcher": "1.x || ^0.1.7",
     "karma-jasmine": "1.x || ^0.3.8",
-    "requirejs": "^2.2.0"
+    "requirejs": "^2.3.3"
   },
   "peerDependencies": {
     "karma": ">=0.9",
