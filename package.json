@@ -29,7 +29,7 @@
     "grunt-karma": "1.x || ~0.12",
     "grunt-npm": "~0.0.2",
     "jasmine-core": "^2.4.1",
-    "karma": "1.x || ^0.13.22",
+    "karma": "1.6.0",
     "karma-chrome-launcher": "1.x || ^0.2.2",
     "karma-firefox-launcher": "1.x || ^0.1.7",
     "karma-jasmine": "1.x || ^0.3.8",
